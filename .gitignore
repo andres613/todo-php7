@@ -1,0 +1,3 @@
+_trash
+db_data/*
+!db_data/.keep
