@@ -10,6 +10,7 @@ services:
             - ${NGINX_PORT:-8001}:80
         volumes:
             - ${ENVIRONMENT}/${PROJECT_DIR}/${APP_DIR}:/home/phpuser/appdata/
+            - ${ENVIRONMENT}/${PROJECT_DIR}/docker/nginx:/etc/nginx/conf.d
         networks:
             - php-network
         depends_on:
@@ -24,6 +25,7 @@ services:
             PHP_IDE_CONFIG: serverName=Docker
         volumes:
             - ${ENVIRONMENT}/${PROJECT_DIR}/${APP_DIR}:/home/phpuser/appdata/
+            - ${ENVIRONMENT}/${PROJECT_DIR}/docker/php:/usr/local/etc/php/
             - ~/.ssh/id_rsa:/home/phpuser/.ssh/id_rsa
         networks:
             - php-network

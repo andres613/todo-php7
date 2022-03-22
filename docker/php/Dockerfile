@@ -1,4 +1,4 @@
-FROM php:7.1.3-fpm
+FROM php:7.3-fpm
 
 ENV UID=1000
 ENV USER=phpuser
@@ -11,7 +11,7 @@ RUN echo "StrictHostKeyChecking no" >> ${HOME}/.ssh/config \
     && echo "export COLUMNS=300" >> ${HOME}/.bashrc \
     && echo "alias sf=/appdata/bin/console" >> ${HOME}/.bashrc
 
-RUN apt-key adv --keyserver keyserver.ubuntu.com --recv-keys AA8E81B4331F7F50
+# RUN apt-key adv --keyserver keyserver.ubuntu.com --recv-keys AA8E81B4331F7F50
 
 RUN apt-get update --fix-missing \
     && apt-get install -y libncurses-dev apt-utils libxml2-dev \
@@ -21,8 +21,6 @@ RUN apt-get update --fix-missing \
     && rm -rf /var/cache/apt/* \
     && rm -rf /var/lib/apt/lists/* \
     && rm -rf /pecl
-
-COPY ./php.ini /usr/local/etc/php/php.ini
 
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
